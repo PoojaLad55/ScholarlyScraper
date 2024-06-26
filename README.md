@@ -21,9 +21,11 @@ It is recommended to use a virtual environment to manage dependencies.
    ```sh
    python -m venv venv
 2. **Activate the environment:**
-    On Windows: ```sh
+    On Windows: 
+    ```sh
     venv\Scripts\activate
-    On macOS/Linux: ```sh
+    On macOS/Linux: 
+    ```sh
     source venv/bin/activate
 3. **Install the necessary dependencies:**
     ```sh
@@ -42,7 +44,5 @@ It is recommended to use a virtual environment to manage dependencies.
 ### Contributions
 Contributions in the form of feedback, bug reports, and suggestions are welcome! However, please note that under the terms of the [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](LICENSE), modifications to the codebase are not permitted.
 
-```markdown
 ## License
 This project is licensed under the [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](LICENSE) - see the [LICENSE](LICENSE) file for details.
-In this Markdown snippet:
