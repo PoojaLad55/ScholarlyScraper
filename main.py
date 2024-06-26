@@ -1,5 +1,5 @@
 import argparse
-from scraper_module import scrape_data
+import source_scraper_module
 
 def main():
     parser = argparse.ArgumentParser(description="Scrape research papers from Google Scholar.")
@@ -15,9 +15,12 @@ def main():
     if not sources:
         sources = input("Enter sources (comma-separated): ").split(',')
 
+    for source in sources:
+        if source.lower() != 'google scholar':
+            print(f"Source '{source}' not supported. At the moment, we only support Google Scholar.")
+            return
     try:
-        scrape_data(search_terms, sources)
-        print("Scraping completed successfully.")
+        source_scraper_module.scrape_google_scholar(search_terms)
     except Exception as e:
         print(f"Error: {str(e)}")
 
