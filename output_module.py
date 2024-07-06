@@ -1,21 +1,16 @@
 import csv
 
-def output_csv(all_articles):
-    output_file = 'output.csv'
+def output_csv(data):
+    csv_data = []
+    for title, details in data.items():
+        authors = ', '.join(details['Author(s)']) if isinstance(details['Author(s)'], list) else details['Author(s)']
+        terms = details['Terms and Frequency']
+        for term, frequency in terms.items():
+            csv_data.append([title, authors, term, frequency])
 
-    with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['search_term', 'title', 'href', 'snippet', 'term_frequencies']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    header = ['Title', 'Authors', 'Term', 'Frequency']
 
-        writer.writeheader()
-        for entry in all_articles:
-            search_term = entry['search_term']
-            articles = entry['articles']
-            for article in articles:
-                writer.writerow({
-                    'search_term': search_term,
-                    'title': article['title'],
-                    'href': article['href'],
-                    'snippet': article['snippet'],
-                    'term_frequencies': article['term_frequencies']
-                })
+    with open('articles_data.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(header)
+        writer.writerows(csv_data)
