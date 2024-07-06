@@ -21,11 +21,10 @@ It is recommended to use a virtual environment to manage dependencies.
    ```sh
    python -m venv venv
 2. **Activate the environment:**
-    On Windows: 
     ```sh
+    On Windows:
     venv\Scripts\activate
     On macOS/Linux: 
-    ```sh
     source venv/bin/activate
 3. **Install the necessary dependencies:**
     ```sh
@@ -39,7 +38,7 @@ It is recommended to use a virtual environment to manage dependencies.
     - You will be prompted to enter a list of search terms, separated by commas.
     - You will be prompted to enter a list of sources (Google Scholars, Web Science, etc.), separated by commas.
 3. **Output:**
-    The extracted output information will be saved in ScholarlyScraperOutput.csv in root directory.
+    The extracted output information will be saved in output.csv in root directory.
 
 ### Contributions
 Contributions in the form of feedback, bug reports, and suggestions are welcome! However, please note that under the terms of the [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](LICENSE), modifications to the codebase are not permitted.

@@ -1,7 +1,7 @@
 import csv
 
 def output_csv(all_articles):
-    output_file = 'ScholarlyScraperOutput.csv'
+    output_file = 'output.csv'
 
     with open(output_file, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['search_term', 'title', 'href', 'snippet', 'term_frequencies']
