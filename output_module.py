@@ -1,16 +1,27 @@
 import csv
 
-def output_csv(data):
+'''
+Write data to CSV file.
+'''
+
+def output_csv(articles_data):
     csv_data = []
-    for title, details in data.items():
+
+    # Iterate through each article's details in the data dictionary
+    for title, details in articles_data.items():
         authors = ', '.join(details['Author(s)']) if isinstance(details['Author(s)'], list) else details['Author(s)']
         terms = details['Terms and Frequency']
-        for term, frequency in terms.items():
-            csv_data.append([title, authors, term, frequency])
+       
+        # Iterate through terms and frequencies, create a row for each term-frequency pair
+        if not terms:
+            csv_data.append([title, authors, 'NA', '0'])
+        else:
+            for term, frequency in terms.items():
+                csv_data.append([title, authors, term, frequency])
 
     header = ['Title', 'Authors', 'Term', 'Frequency']
-
-    with open('articles_data.csv', 'w', newline='') as file:
+    # Open 'output.csv' file and write article data
+    with open('output.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(header)
         writer.writerows(csv_data)

@@ -6,9 +6,9 @@ from bs4 import BeautifulSoup
 from term_counter_module import scrape_data
 from output_module import output_csv
 
-def get_link():
-    url = "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C11&q=coralreef"
-    base_url = "https://scholar.google.com"
+def get_link(search_terms, base_query):
+    base_url = 'https://scholar.google.com'
+    url = f'https://scholar.google.com/scholar?hl=en&as_sdt=0%2C11&q={base_query}'
 
     article_links = []
     page_limit = 1
