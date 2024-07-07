@@ -34,7 +34,8 @@ def scrape_articles(search_terms, article_links):
 
             data = {
                 'Author(s)': article_authors,
-                'Terms and Frequency': term_freq_dict
+                'Terms and Frequency': term_freq_dict,
+                'Link': link
             }
 
             # Add article detail to final csv dictionary
