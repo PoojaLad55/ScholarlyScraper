@@ -7,7 +7,6 @@ def term_counter(article_text, search_terms):
     term_freq = {}
     
     article_text = article_text.lower()
-    print(article_text)
 
     # Iterates through each word in article text to find search terms and their respective frequencies
     for word in article_text.split():

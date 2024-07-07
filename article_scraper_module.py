@@ -9,15 +9,8 @@ Scrapes article data from a list of article links, including title, authors, and
 
 def scrape_articles(search_terms, article_links):
     articles_data = {}
-    
-    # limit = 6
-    # count = 0
 
     for link in article_links:
-
-        # if link in article_links:
-        #     if count >= limit:
-        #         break
 
         try:
             response = requests.get(link)
@@ -33,10 +26,10 @@ def scrape_articles(search_terms, article_links):
             article_authors = [author.text.strip() for author in author_elems] if author_elems else 'Unable to identify author(s)'
             
             # Extract paragraphs of the article text
-            paragraphs = soup.select('div.c-article-section__content p') or soup.select('div.Body.u-font-serif.text-s p')
-            article_text = ' '.join([p.get_text(strip=True) for p in paragraphs]) if paragraphs else 'No text content identified'
+            paragraphs = soup.find_all('p')  # Adjust based on HTML structure
+            article_text = ' '.join([p.text.strip() for p in paragraphs])
 
-             # Count term frequencies in the article text
+            # Count term frequencies in the article text
             term_freq_dict = term_counter(article_text, search_terms)
 
             data = {
@@ -46,7 +39,6 @@ def scrape_articles(search_terms, article_links):
 
             # Add article detail to final csv dictionary
             articles_data[title] = data
-            # count += 1
 
         except requests.exceptions.RequestException as e:
             print("Error:", e)
