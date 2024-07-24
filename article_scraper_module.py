@@ -1,39 +1,41 @@
-import requests
-from bs4 import BeautifulSoup
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from term_counter_module import term_counter
 from output_module import output_csv
+from utils import setup_browser, random_delay
+import requests
 
-'''
-Scrapes article data from a list of article links, including title, authors, and frequency of user's search terms.
-'''
-
-def scrape_articles(search_terms, article_links):
+def scrape_articles(search_terms, article_details):
     articles_data = {}
+    driver = setup_browser()
 
-    for link in article_links:
+    for article in article_details:
+        title = article['title']
+        authors = article['authors']
+        link = article['link']
+
+        if "books.google" in link:
+            print(f"Skipping book link: {link}")
+            continue
 
         try:
-            response = requests.get(link)
-            response.raise_for_status() 
-            soup = BeautifulSoup(response.content, 'html.parser')
+            driver.get(link)
+            random_delay()
 
-            # Extract the article title
-            title_elem = soup.select_one('h1[data-article-title]') or soup.select_one('h1#screen-reader-main-title span.title-text')
-            title = title_elem.text.strip() if title_elem else 'Unable to identify title'
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.TAG_NAME, "body"))
+            )
+            main_content_element = driver.find_element(By.TAG_NAME, 'body')  # Change this to a more specific tag if needed
 
-            # Extract the article authors
-            author_elems = soup.select('ul.c-article-author-list li.c-article-author-list__item a[data-test="author-name"]') or soup.select_one('.react-xocs-alternative-link .given-name, .react-xocs-alternative-link .text.surname')
-            article_authors = [author.text.strip() for author in author_elems] if author_elems else 'Unable to identify author(s)'
-            
-            # Extract paragraphs of the article text
-            paragraphs = soup.find_all('p')  # Adjust based on HTML structure
-            article_text = ' '.join([p.text.strip() for p in paragraphs])
-
-            # Count term frequencies in the article text
+            # Extract body text from the initial page
+            paragraphs = main_content_element.find_elements(By.XPATH, './/p')
+            article_text = ' '.join([p.text.strip() for p in paragraphs])           
+                
             term_freq_dict = term_counter(article_text, search_terms)
 
             data = {
-                'Author(s)': article_authors,
+                'Author(s)': authors,
                 'Terms and Frequency': term_freq_dict,
                 'Link': link
             }
@@ -43,6 +45,7 @@ def scrape_articles(search_terms, article_links):
 
         except requests.exceptions.RequestException as e:
             print("Error:", e)
-
-    # Output the scraped data to a CSV file
+    
+    driver.quit()
+    print(f'article data: {articles_data}')
     output_csv(articles_data)
