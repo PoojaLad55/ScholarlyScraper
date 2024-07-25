@@ -40,9 +40,11 @@ It is recommended to use a virtual environment to manage dependencies.
     - `--sources`: Comma-separated list of sources (e.g., "google scholar").
 3. **Output:**
     The extracted output information will be saved in output.csv in root directory.
+
 ### Example
-```sh
+    ```sh
     python main.py --base-query "coral reef" --terms "juvenile, corals, coral, reefs, reef" --sources "google scholar"
+    
 ### Notes
 - The script currently only supports "Google Scholar" as a source and skips books.
 - Ensure that the required Python libraries are installed (e.g., selenium, requests).
