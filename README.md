@@ -30,7 +30,7 @@ It is recommended to use a virtual environment to manage dependencies.
     ```sh
     pip install -r requirements.txt
 
-### Usage
+## Usage
 1. **Run with Command-Line Arguments**
     ```sh
     python main.py --base-query "base query" --terms "search terms" --sources "google scholar"
@@ -40,14 +40,14 @@ It is recommended to use a virtual environment to manage dependencies.
     - `--sources`: Comma-separated list of sources (e.g., "google scholar").
 3. **Output:**
     The extracted output information will be saved in output.csv in root directory.
-**Example:**
+### Example
     ```sh
     python main.py --base-query "coral reef" --terms "juvenile, corals, coral, reefs, reef" --sources "google scholar"
-**Notes:**
+### Notes
 - The script currently only supports "Google Scholar" as a source and skips books.
 - Ensure that the required Python libraries are installed (e.g., selenium, requests).
 
-### Contributions
+## Contributions
 Contributions in the form of feedback, bug reports, and suggestions are welcome! However, please note that under the terms of the [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](LICENSE), modifications to the codebase are not permitted.
 
 ## License
