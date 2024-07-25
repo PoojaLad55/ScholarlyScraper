@@ -31,14 +31,21 @@ It is recommended to use a virtual environment to manage dependencies.
     pip install -r requirements.txt
 
 ### Usage
-1. **Run the Scraper:**
+1. **Run with Command-Line Arguments**
     ```sh
-    python scraper.py
+    python main.py --base-query "base query" --terms "search terms" --sources "google scholar"
 2. **User Input:**
-    - You will be prompted to enter a list of search terms, separated by commas.
-    - You will be prompted to enter a list of sources (Google Scholars, Web Science, etc.), separated by commas.
+    - `--base-query`: Base Google Scholar search query (e.g., "coral reefs")
+    - `--terms`: Comma-separated list of search terms (e.g., "coral, reef, climate")
+    - `--sources`: Comma-separated list of sources (e.g., "google scholar").
 3. **Output:**
     The extracted output information will be saved in output.csv in root directory.
+**Example:**
+    ```sh
+    python main.py --base-query "coral reef" --terms "juvenile, corals, coral, reefs, reef" --sources "google scholar"
+**Notes:**
+- The script currently only supports "Google Scholar" as a source and skips books.
+- Ensure that the required Python libraries are installed (e.g., selenium, requests).
 
 ### Contributions
 Contributions in the form of feedback, bug reports, and suggestions are welcome! However, please note that under the terms of the [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](LICENSE), modifications to the codebase are not permitted.
