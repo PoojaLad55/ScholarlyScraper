@@ -20,7 +20,7 @@ def output_csv(articles_data):
             for term, frequency in terms.items():
                 csv_data.append([title, authors, term, frequency, link])
 
-    header = ['Title', 'Authors', 'Term', 'Frequency', 'Link']
+    header = ['Title', 'Author(s)', 'Term', 'Frequency', 'Link']
     
     # Open 'output.csv' file and write article data
     with open('output.csv', 'w', newline='') as file:

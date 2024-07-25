@@ -6,18 +6,19 @@ from article_scraper_module import scrape_articles
 from utils import setup_browser, random_delay
 
 '''
-Scrapes Google Scholar for article links based on a search query.
+Scrapes Google Scholar for article links based on the specified search query. 
+It navigates through multiple pages of search results, extracts information 
+about articles, and compiles a list of details.
 '''
 
 def get_link(search_terms, base_query):
-    # Initial URL and base URL for Google Scholar
     base_url = 'https://scholar.google.com'
     url = f'https://scholar.google.com/scholar?hl=en&as_sdt=0%2C11&q={base_query}'
 
     article_details = []
 
     # Page limit and count to control how many pages to scrape
-    page_limit = 5
+    page_limit = 1
     page_count = 0
 
     driver = setup_browser()

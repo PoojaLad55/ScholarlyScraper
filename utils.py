@@ -4,6 +4,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
+'''
+Configures and launches a Chrome browser with specific settings to avoid 
+detection and improve performance in an automated environment. Also creates
+random pauses between actions to mimic human behavior and avoid detection
+by websites that might block bots.
+'''
+
 def setup_browser():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
