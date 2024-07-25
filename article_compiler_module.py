@@ -11,20 +11,17 @@ It navigates through multiple pages of search results, extracts information
 about articles, and compiles a list of details.
 '''
 
-def get_link(search_terms, base_query):
+def get_link(search_terms, base_query, num_pages):
     base_url = 'https://scholar.google.com'
     url = f'https://scholar.google.com/scholar?hl=en&as_sdt=0%2C11&q={base_query}'
 
     article_details = []
-
-    # Page limit and count to control how many pages to scrape
-    page_limit = 1
     page_count = 0
 
     driver = setup_browser()
 
     # Navigate through multiple pages of search results
-    while url and page_count < page_limit:
+    while url and page_count < num_pages:
         try:
             driver.get(url)
             random_delay()

@@ -14,12 +14,14 @@ def main():
     parser.add_argument('--base-query', required=True, help='Base Google Scholar search query')
     parser.add_argument('--terms', required=True, help='Comma-separated list of search terms')
     parser.add_argument('--sources', required=True, help='Comma-separated list of sources')
+    parser.add_argument('--pages', type=int, default=5, help='Number of pages to scrape (default is 5)')
     args = parser.parse_args()
 
     base_query = quote(args.base_query)  
     
     search_terms = [term.strip() for term in args.terms.split(',')]
     sources = [source.strip() for source in args.sources.split(',')]
+    num_pages = args.pages
 
     if not search_terms:
         search_terms = input("Enter search terms (comma-separated): ").split(',')
@@ -31,7 +33,7 @@ def main():
             print(f"Source '{source}' not supported. At the moment, we only support Google Scholar.")
             return
     try:
-        get_link(search_terms, base_query)
+        get_link(search_terms, base_query, num_pages)
     except Exception as e:
         print(f"Error: {str(e)}")
 

@@ -33,17 +33,18 @@ It is recommended to use a virtual environment to manage dependencies.
 ## Usage
 1. **Run with Command-Line Arguments**
     ```sh
-    python main.py --base-query "base query" --terms "search terms" --sources "google scholar"
-2. **User Input:**
+    python main.py --base-query "base query" --terms "search terms" --sources "google scholar" --pages number
+2. **Arguments:**
     - `--base-query`: Base Google Scholar search query (e.g., "coral reefs")
     - `--terms`: Comma-separated list of search terms (e.g., "coral, reef, climate")
     - `--sources`: Comma-separated list of sources (e.g., "google scholar").
+    - `--pages`: Number of pages to scrape (default is 5).
 3. **Output:**
     The extracted output information will be saved in output.csv in root directory.
 
 ### Example
     ```sh
-    python main.py --base-query "coral reef" --terms "juvenile, corals, coral, reefs, reef" --sources "google scholar"
+    python main.py --base-query "coral reef" --terms "juvenile, corals, coral, reefs, reef" --sources "google scholar" --pages 7
     
 ### Notes
 - The script currently only supports "Google Scholar" as a source and skips books.
