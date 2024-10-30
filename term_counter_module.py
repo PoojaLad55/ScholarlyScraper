@@ -16,5 +16,4 @@ def term_counter(article_text, search_terms):
                 term_freq[word] = 1
             else:
                 term_freq[word] += 1
-    print(f'term freq dict: {term_freq}')
     return term_freq

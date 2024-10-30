@@ -1,4 +1,5 @@
 import csv
+import os
 
 '''
 Write data to CSV file.
@@ -22,8 +23,10 @@ def output_csv(articles_data):
 
     header = ['Title', 'Author(s)', 'Term', 'Frequency', 'Link']
     
+    output_file = os.path.expanduser('~/output.csv')
+
     # Open 'output.csv' file and write article data
-    with open('output.csv', 'w', newline='') as file:
+    with open(output_file, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(header)
         writer.writerows(csv_data)

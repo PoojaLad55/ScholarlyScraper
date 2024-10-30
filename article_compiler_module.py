@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from article_scraper_module import scrape_articles
 from utils import setup_browser, random_delay
 
-'''
+''' 
 Scrapes Google Scholar for article links based on the specified search query. 
 It navigates through multiple pages of search results, extracts information 
 about articles, and compiles a list of details.
@@ -21,7 +21,7 @@ def get_link(search_terms, base_query, num_pages):
     driver = setup_browser()
 
     # Navigate through multiple pages of search results
-    while url and page_count < num_pages:
+    while page_count < num_pages:
         try:
             driver.get(url)
             random_delay()
@@ -52,21 +52,37 @@ def get_link(search_terms, base_query, num_pages):
                     'link': link
                 })
 
-            # Navigate to the next page
-            next_button = driver.find_element(By.CSS_SELECTOR, 'button[aria-label="Next"]')
-            if next_button:
-                onclick_attr = next_button.get_attribute('onclick')
-                match = re.search(r"'/scholar\?[^']+", onclick_attr) if onclick_attr else None
-                url = base_url + match.group(0)[1:].replace("\\x3d", "=").replace("\\x26", "&") if match else None
-            else:
-                url = None
+            # After scraping all articles, check for the next page
+            try:
+                # Locate the next button by its 'aria-label'
+                next_button = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, "//button[contains(@aria-label, 'Next')]"))
+                )
 
-            page_count += 1
-            random_delay()
+                if next_button:
+                    onclick_attr = next_button.get_attribute('onclick')
+                    if onclick_attr:
+                        next_url_suffix = re.search(r"window.location='(/scholar.*?)'", onclick_attr).group(1)
+                        next_url_suffix = next_url_suffix.replace("\\x3d", "=").replace("\\x26", "&")
+
+                        # Construct the new URL for the next page
+                        url = base_url + next_url_suffix
+                        page_count += 1  
+                        random_delay() 
+                    else:
+                        print("No more pages to navigate.")
+                        break 
+                else:
+                    print("Next button not found.")
+                    break
+
+            except Exception as e:
+                print("Next button not found or clickable:", e)
+                break  # Exit if there's an issue finding the next button
 
         except Exception as e:
             print("Error:", e)
             break
-
+            
     driver.quit()
     scrape_articles(search_terms, article_details)
