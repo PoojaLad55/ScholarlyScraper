@@ -17,16 +17,20 @@ A Python program for data scraping research papers from Google Scholar, extracti
 ### Virtual Environment Setup
 It is recommended to use a virtual environment to manage dependencies.
 
-1. **Create a virtual environment:**
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/PoojaLad55/ScholarlyScraper.git
+    cd ScholarlyScraper
+2. **Create a virtual environment:**
    ```sh
    python -m venv venv
-2. **Activate the environment:**
+3. **Activate the environment:**
     ```sh
     On Windows:
     venv\Scripts\activate
     On macOS/Linux: 
     source venv/bin/activate
-3. **Install the necessary dependencies:**
+4. **Install the necessary dependencies:**
     ```sh
     pip install -r requirements.txt
 
