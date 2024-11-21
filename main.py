@@ -1,6 +1,7 @@
 import argparse
 from urllib.parse import quote
 from article_compiler_module import get_link
+from utils import setup_browser
 
 '''
 This script scrapes research papers from Google Scholar based on user-provided search terms.
@@ -23,6 +24,9 @@ def main():
     sources = [source.strip() for source in args.sources.split(',')]
     num_pages = args.pages
 
+    chromedriver_path = input("Please enter the path to your chromedriver: ")
+
+
     if not search_terms:
         search_terms = input("Enter search terms (comma-separated): ").split(',')
     if not sources:
@@ -33,7 +37,9 @@ def main():
             print(f"Source '{source}' not supported. At the moment, we only support Google Scholar.")
             return
     try:
-        get_link(search_terms, base_query, num_pages)
+        driver = setup_browser(chromedriver_path)
+        get_link(search_terms, base_query, num_pages, chromedriver_path)
+        driver.quit()
     except Exception as e:
         print(f"Error: {str(e)}")
 

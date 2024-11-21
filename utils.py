@@ -11,7 +11,7 @@ random pauses between actions to mimic human behavior and avoid detection
 by websites that might block bots.
 '''
 
-def setup_browser():
+def setup_browser(chromedriver_path):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument('--disable-gpu')
@@ -25,7 +25,7 @@ def setup_browser():
     chrome_options.add_argument("--log-level=1")
     chrome_options.add_argument("--enable-unsafe-swiftshader")
 
-    service = Service('C:/Users/pooja/Downloads/chromedriver-win64/chromedriver.exe')
+    service = Service(chromedriver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     return driver

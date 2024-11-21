@@ -52,7 +52,7 @@ It is recommended to use a virtual environment to manage dependencies.
     
 ### Notes
 - The script currently only supports "Google Scholar" as a source and skips books.
-- Ensure that the required Python libraries are installed (e.g., selenium, requests). Ensure compatible chrome driver using the following link: https://getwebdriver.com/chromedriver#stable
+- Ensure that the required Python libraries are installed (e.g., selenium, requests). Ensure compatible chrome driver using the following link: https://getwebdriver.com/chromedriver#stable -- copy path of chromedriver into utils.py
 
 ## Contributions
 Contributions in the form of feedback, bug reports, and suggestions are welcome! However, please note that under the terms of the [Creative Commons Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)](LICENSE), modifications to the codebase are not permitted.

@@ -11,9 +11,9 @@ Scrapes text content from a list of article links, processes the content to
 count the frequency of specified search terms, and organizes the data for output. 
 '''
 
-def scrape_articles(search_terms, article_details):
+def scrape_articles(search_terms, article_details, chromedriver_path):
     articles_data = {}
-    driver = setup_browser()
+    driver = setup_browser(chromedriver_path)
 
     # Iterate over each article in the provided article details
     for article in article_details:

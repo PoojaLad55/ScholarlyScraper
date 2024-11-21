@@ -11,14 +11,14 @@ It navigates through multiple pages of search results, extracts information
 about articles, and compiles a list of details.
 '''
 
-def get_link(search_terms, base_query, num_pages):
+def get_link(search_terms, base_query, num_pages, chromedriver_path):
     base_url = 'https://scholar.google.com'
     url = f'https://scholar.google.com/scholar?hl=en&as_sdt=0%2C11&q={base_query}'
 
     article_details = []
     page_count = 0
 
-    driver = setup_browser()
+    driver = setup_browser(chromedriver_path)
 
     # Navigate through multiple pages of search results
     while page_count < num_pages:
@@ -85,4 +85,4 @@ def get_link(search_terms, base_query, num_pages):
             break
             
     driver.quit()
-    scrape_articles(search_terms, article_details)
+    scrape_articles(search_terms, article_details, chromedriver_path)
