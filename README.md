@@ -43,7 +43,9 @@ It is recommended to use a virtual environment to manage dependencies.
     - `--terms`: Comma-separated list of search terms (e.g., "coral, reef, climate")
     - `--sources`: Comma-separated list of sources (e.g., "google scholar").
     - `--pages`: Number of pages to scrape (default is 5).
-3. **Output:**
+3. **Path:**
+    Enter path to chromedriver when prompted.
+4. **Output:**
     The extracted output information will be saved in output.csv in root directory.
 
 ### Example
